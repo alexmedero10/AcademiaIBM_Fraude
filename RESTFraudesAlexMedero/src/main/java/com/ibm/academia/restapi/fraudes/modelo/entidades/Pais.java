@@ -2,11 +2,10 @@ package com.ibm.academia.restapi.fraudes.modelo.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
-import javax.persistence.PostPersist;
-import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotEmpty;
@@ -44,13 +43,30 @@ public class Pais implements Serializable{
 	private Date fechaModificacion;
 	
 	
-	public Pais(String ip, String codigoISO, String nombre) {
+	public Pais(String ip, String codigoISO, String nombre, String usuarioCreacion) {
 		this.ip = ip;
 		this.codigoISO = codigoISO;
 		this.nombre = nombre;
+		this.usuarioCreacion = usuarioCreacion;
+	}
+	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(ip);
 	}
 
-
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Pais))
+			return false;
+		Pais other = (Pais) obj;
+		return Objects.equals(ip, other.ip);
+	}
+	
+	
 	@PrePersist
 	public void antesPersistir() {
 		this.fechaCreacion = new Date();
@@ -61,5 +77,6 @@ public class Pais implements Serializable{
 		this.fechaModificacion = new Date();
 	}
 	
+
 	private static final long serialVersionUID = -2080674050489609991L;
 }

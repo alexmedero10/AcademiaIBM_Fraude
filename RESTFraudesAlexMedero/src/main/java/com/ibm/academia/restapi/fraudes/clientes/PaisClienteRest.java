@@ -4,8 +4,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.ibm.academia.restapi.fraudes.modelo.entidades.Pais;
-
 @FeignClient(name = "api-pais", url = "${url.ipapi}")
 public interface PaisClienteRest {
 	
