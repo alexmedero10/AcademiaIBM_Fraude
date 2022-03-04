@@ -1,6 +1,5 @@
 package com.ibm.academia.restapi.fraudes.controladores;
 
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import javax.validation.Valid;
@@ -64,6 +63,13 @@ public class FraudeController {
 		return CompletableFuture.supplyAsync(() -> new ResponseEntity<FraudeDTO>(fraudeDTO, HttpStatus.OK));
 	}
 
+	/**
+	 * Método alternativo que response le error presentado en consultarPaisPorIp
+	 * @param ip - Parámetro de la ip
+	 * @param e - Error
+	 * @return ResponseEntity<String> con mensaje de error
+	 * @author AML - 03/03/2022
+	 */
 	public CompletableFuture<ResponseEntity<?>> metodoAlternativo(String ip, Throwable e){
 		logger.info("error: " + e.getMessage());
 		return CompletableFuture.supplyAsync(() -> new ResponseEntity<String>(e.getMessage(), HttpStatus.OK));

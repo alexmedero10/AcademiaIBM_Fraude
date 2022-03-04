@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "ipes")
+@Table(name = "ipes", schema = "fraude")
 public class Ip implements Serializable {
 
 	@Id
